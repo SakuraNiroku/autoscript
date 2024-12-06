@@ -11,17 +11,13 @@ sender = os.getenv('msender')
 recv = [os.getenv('mrecv')]
 
 localtime = time.asctime(time.localtime(time.time()))
-message = MIMEText(f'现在时间为{localtime}\nSend By Github Action')
-message['From'] = Header(sender,'utf-8')
-message['To'] = Header(recv[0],'utf-8')
+message = MIMEText(f'现在时间为{localtime}\nSend By Github Action','plain','utf-8')
+message['From'] = Header(sender)
+message['To'] = Header(recv[0])
 
 subject = 'AutoScript Morning News'
-message['Subject'] = Header(subject,'utf-8')
+message['Subject'] = Header(subject)
 
-try:
-    smtpObj = smtplib.SMTP_SSL()
-    smtpObj.connect(mail_host,465)
-    smtpObj.login(mail_user,mail_pass)
-    smtpObj.sendmail(sender,recv,message.as_string())
-except smtplib.SMTPException:
-    raise Exception('Cannot send news')
+with smtplib.SMTP_SSL(host=mail_host,port=465) as server:
+        server.login(mail_user,mail_pass)
+        server.sendmail(sender,recv,message.as_string())
