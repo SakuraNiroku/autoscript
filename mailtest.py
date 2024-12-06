@@ -19,8 +19,8 @@ subject = 'AutoScript Morning News'
 message['Subject'] = Header(subject,'utf-8')
 
 try:
-    smtpObj = smtplib.SMTP()
-    smtpObj.connect(mail_host,25)
+    smtpObj = smtplib.SMTP_SSL()
+    smtpObj.connect(mail_host,465)
     smtpObj.login(mail_user,mail_pass)
     smtpObj.sendmail(sender,recv,message.as_string())
 except smtplib.SMTPException:
