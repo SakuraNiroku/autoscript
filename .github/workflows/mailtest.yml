@@ -1,0 +1,17 @@
+name: mailtest
+on:
+    schedule:
+        - cron: '0 22 * * 6'
+jobs:
+    work:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: szenius/set-timezone@v1.0
+              with:
+                timezoneLinux: 'Asia/Shanghai'
+            - uses: actions/setup-python@v4
+              with:
+                python-version: '3.10'
+            - run: 'chmod 777 mailtest.sh'
+            - run: './mailtest.sh'
