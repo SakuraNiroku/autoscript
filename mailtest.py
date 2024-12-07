@@ -17,7 +17,7 @@ message['To'] = Header(recv[0])
 
 subject = 'AutoScript Morning News'
 message['Subject'] = Header(subject)
-
+print(mail_host)
 with smtplib.SMTP_SSL(host=mail_host,port=465) as server:
         server.login(mail_user,mail_pass)
         server.sendmail(sender,recv,message.as_string())
