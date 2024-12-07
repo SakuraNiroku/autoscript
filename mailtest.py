@@ -19,7 +19,7 @@ sendText = f'<h1>AutoScript Morning News</h1>'
 sendText += f'<p>现在时间为{localtime}</p>'
 sendText += f"<p><img src='{imgurl}' height=\"90\" width=\"160\"></p>"
 sendText += f'<p>Send By Github Action</p>'
-message = MIMEText(f'现在时间为{localtime}\nSend By Github Action','html','utf-8')
+message = MIMEText(sendText,'html','utf-8')
 message['From'] = Header(sender)
 message['To'] = Header(recv[0])
 
