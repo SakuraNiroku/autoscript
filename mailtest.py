@@ -3,6 +3,7 @@ import os
 import time
 from email.mime.text import MIMEText
 from email.header import Header
+import requests
 
 mail_host = os.getenv('mhost')
 mail_user = os.getenv('muser')
@@ -10,8 +11,15 @@ mail_pass = os.getenv('mpass')
 sender = os.getenv('msender')
 recv = [os.getenv('mrecv')]
 
+imgget = requests.get('https://www.loliapi.com/acg/pc/?type=json')
+imgurl = imgget.json()['url']
+
 localtime = time.asctime(time.localtime(time.time()))
-message = MIMEText(f'现在时间为{localtime}\nSend By Github Action','plain','utf-8')
+sendText = f'<h1>AutoScript Morning News</h1>'
+sendText += f'<p>现在时间为{localtime}</p>'
+sendText += f"<p><img src='{imgurl}' height=\"90\" width=\"160\"></p>"
+sendText += f'<p>Send By Github Action</p>'
+message = MIMEText(f'现在时间为{localtime}\nSend By Github Action','html','utf-8')
 message['From'] = Header(sender)
 message['To'] = Header(recv[0])
 

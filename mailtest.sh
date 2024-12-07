@@ -1,3 +1,3 @@
 #! /bin/sh
-#pip install smtplib
+pip install requests
 python mailtest.py
