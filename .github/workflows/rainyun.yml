@@ -2,7 +2,7 @@ name: rainyun
 on:
     workflow_dispatch:
     schedule:
-        - cron: '0 22 * * 5,6'
+        - cron: '0 22 * * *'
 jobs:
     work:
         runs-on: ubuntu-latest
