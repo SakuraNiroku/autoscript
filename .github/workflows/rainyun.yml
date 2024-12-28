@@ -1,21 +1,21 @@
-name: rainyun
-on:
-    workflow_dispatch:
-    schedule:
-        - cron: '0 22 * * *'
-jobs:
-    work:
-        runs-on: ubuntu-latest
-        environment: rainyun
-        steps:
-            - uses: actions/checkout@v3
-            - uses: szenius/set-timezone@v1.0
-              with:
-                timezoneLinux: 'Asia/Shanghai'
-            - uses: actions/setup-python@v4
-              with:
-                python-version: '3.10'
-            - run: 'chmod 777 rainyunsign.sh'
-            - run: './rainyunsign.sh'
-              env:
-                rtokens: ${{ secrets.rtokens }}
+#name: rainyun
+#on:
+#    workflow_dispatch:
+#    schedule:
+#        - cron: '0 22 * * *'
+#jobs:
+#    work:
+#        runs-on: ubuntu-latest
+#        environment: rainyun
+#        steps:
+#            - uses: actions/checkout@v3
+#            - uses: szenius/set-timezone@v1.0
+#              with:
+#                timezoneLinux: 'Asia/Shanghai'
+#            - uses: actions/setup-python@v4
+#              with:
+#                python-version: '3.10'
+#            - run: 'chmod 777 rainyunsign.sh'
+#            - run: './rainyunsign.sh'
+#              env:
+#                rtokens: ${{ secrets.rtokens }}
